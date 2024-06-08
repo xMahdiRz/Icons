@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+  
+@layer base {
+  @font-face {
+    font-family: 'Stapel';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/stapel.otf) format('otf');
+  }
+}
+/* 
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ff0000;
+} */
