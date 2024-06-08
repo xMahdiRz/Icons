@@ -1,5 +1,12 @@
+// next.config.js
 module.exports = {
-	images: {
-		domains: [''],
-	},
+  async rewrites() {
+    const rewrites = [
+      {
+        source: "/icons",
+        destination: "/api/icons",
+      },
+    ];
+    return rewrites;
+  },
 };

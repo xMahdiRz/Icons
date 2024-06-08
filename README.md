@@ -1,48 +1,119 @@
-# Icons Showcase Readme
+# Icon Set Generator API Documentation
 
-## Description
-This repository contains code for a React component called IconsShowcase, which renders a showcase of SVG icons based on certain parameters.
+This documentation provides information on how to use the Icon Set Generator API to create and customize a set of icons for your GitHub README.
 
-## IconsShowcase Component
-- The `IconsShowcase` component is responsible for fetching and displaying SVG icons.
-- It accepts props like `icons`, `theme`, `perLine`, and `space` to customize the display.
+## Endpoint
 
-[![My Skills](http://localhost:3000/icons/nextjs-dark.svg)](https://skillicons.dev)
+### URL
+```
+http://localhost:3000/api/hello
+```
+
+## Parameters
+
+### Query Parameters
+- **i**: A comma-separated list of icon short names.
+- **theme**: The theme of the icons (e.g., `dark`, `light`).
+- **perLine**: Number of icons per line.
+- **space**: Space between icons in pixels.
+
+### Example
+```
+http://localhost:3000/api/hello?i=js,ts,py&theme=dark&perLine=50&space=1
+```
+
+## Short Names Mapping
+
+The API uses short names for icons which are then mapped to their full names. Here is the current mapping:
+
+```javascript
+const shortNames = {
+  js: "javascript",
+  ts: "typescript",
+  py: "python",
+  tailwind: "tailwindcss",
+  vue: "vuejs",
+  nuxt: "nuxtjs",
+  go: "golang",
+  cf: "cloudflare",
+  wasm: "webassembly",
+  postgres: "postgresql",
+  k8s: "kubernetes",
+  next: "nextjs",
+  mongo: "mongodb",
+  md: "markdown",
+  ps: "photoshop",
+  ai: "illustrator",
+  pr: "premiere",
+  ae: "aftereffects",
+  scss: "sass",
+  sc: "scala",
+  net: "dotnet",
+  gatsbyjs: "gatsby",
+  gql: "graphql",
+  vlang: "v",
+  amazonwebservices: "aws",
+  bots: "discordbots",
+  express: "expressjs",
+  googlecloud: "gcp",
+  mui: "materialui",
+  windi: "windicss",
+  unreal: "unrealengine",
+  nest: "nestjs",
+  ktorio: "ktor",
+  pwsh: "powershell",
+  au: "audition",
+  rollup: "rollupjs",
+  rxjs: "reactivex",
+  rxjava: "reactivex",
+  ghactions: "githubactions",
+  sklearn: "scikitlearn",
+};
+```
 
 ## Usage
-### IconsShowcase Component
-1. Import the `IconsShowcase` component from `"@/components/IconsShowcase"`.
-2. Use the component with the following props:
-   - `icons`: An array of icon names.
-   - `theme`: The theme of the icons (default: 'dark').
-   - `perLine`: Number of icons per line (default: 10).
-   - `space`: Space between icons (default: 3).
 
-### Home Component
-1. Import `useSearchParams` from `'next/navigation'`.
-2. Retrieve query parameters (`i`, `theme`, `perLine`, `space`) using `useSearchParams`.
-3. Create an array of icon names based on the `i` parameter.
-4. Replace short names with full names using the `shortNames` object.
-5. Render the `IconsShowcase` component with the provided props.
+### Fetching Icons
 
-## Example
-```jsx
-import IconsShowcase from "@/components/IconsShowcase";
+To fetch the icons, make a GET request to the endpoint with the desired query parameters.
 
-const icons = ["React", "Vue", "Angular"];
-const theme = "light";
-const perLine = 5;
-const space = 5;
+### Example Request
 
-const Home = () => {
-  return (
-    <IconsShowcase 
-      icons={icons} 
-      theme={theme} 
-      perLine={perLine} 
-      space={space}
-    />
-  );
-};
+```javascript
+fetch('http://localhost:3000/api/hello?i=js,ts,py&theme=dark&perLine=10&space=3')
+  .then(response => response.text())
+  .then(svg => {
+    // Do something with the SVG content
+    console.log(svg);
+  });
+```
 
-export default Home;
+### Response
+
+The response is an SVG containing the requested icons arranged according to the specified parameters.
+
+## Error Handling
+
+In case of errors, the API will return a placeholder error icon.
+
+## Example Response
+
+Here is an example of the SVG response:
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="50" viewBox="0 0 160 50" fill="none">
+  <g transform="translate(0, 0)"><!-- SVG content for javascript icon --></g>
+  <g transform="translate(53, 0)"><!-- SVG content for typescript icon --></g>
+  <g transform="translate(106, 0)"><!-- SVG content for python icon --></g>
+</svg>
+```
+
+## Troubleshooting
+
+- Ensure the short names used in the query are correct.
+- If an icon does not exist for the specified theme, the API will attempt to fall back to the default `dark` theme or the icon without any theme suffix.
+- If all attempts fail, a placeholder error icon will be returned.
+
+## Conclusion
+
+This API allows you to easily generate a set of icons for your GitHub README by specifying the icons, theme, layout, and spacing. Use the provided endpoint and parameters to customize and retrieve your icons in SVG format.
