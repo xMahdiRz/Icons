@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import {headers} from 'next/headers'
+
 import iconsData from "./icons.json";
 // Function to map short names to full names
 const mapShortNames = (icons) => {
@@ -49,6 +51,7 @@ const mapShortNames = (icons) => {
 };
 
 export async function GET(req) {
+  const headersList = headers()
   const url = new URL(req.url);
   const searchParams = url.searchParams;
   const i = searchParams.get("i");
@@ -72,7 +75,7 @@ export async function GET(req) {
 
   // Function to fetch icons
   const fetchIcons = async (iconNames, theme) => {
-    const baseUrl = process.env.BASE_URL || "http://localhost:3000" || "https://icons-alpha.vercel.app"; // Replace with your server URL in production
+    const baseUrl = "https://icons-alpha.vercel.app"; // Replace with your server URL in production
     const iconBaseUrl = `${baseUrl}/icons`;
 
     return await Promise.all(
