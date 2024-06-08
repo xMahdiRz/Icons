@@ -72,7 +72,7 @@ export async function GET(req) {
 
   // Function to fetch icons
   const fetchIcons = async (iconNames, theme) => {
-    const baseUrl = process.env.BASE_URL || "http://localhost:3000"; // Replace with your server URL in production
+    const baseUrl = process.env.BASE_URL || "http://localhost:3000" || "https://icons-alpha.vercel.app/icons"; // Replace with your server URL in production
     const iconBaseUrl = `${baseUrl}/icons`;
 
     return await Promise.all(
