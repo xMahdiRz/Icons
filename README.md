@@ -7,6 +7,8 @@ This repository contains code for a React component called IconsShowcase, which 
 - The `IconsShowcase` component is responsible for fetching and displaying SVG icons.
 - It accepts props like `icons`, `theme`, `perLine`, and `space` to customize the display.
 
+[![My Skills](http://localhost:3000/icons/nextjs-dark.svg)](https://skillicons.dev)
+
 ## Usage
 ### IconsShowcase Component
 1. Import the `IconsShowcase` component from `"@/components/IconsShowcase"`.
