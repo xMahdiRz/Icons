@@ -9,6 +9,8 @@ This documentation provides information on how to use the Icon Set Generator API
 http://localhost:3000/api/hello
 ```
 
+[![My Skills](https://icons-alpha.vercel.app/icons?i=all&theme=dark&perLine=8&space=3)](https://skillicons.dev)
+
 ## Parameters
 
 ### Query Parameters
