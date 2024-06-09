@@ -1,5 +1,6 @@
 import ThemeProvider from "@/context/ThemeProvider";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 
 export const metadata = {
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="font-stapel">
         <Analytics />
+        <SpeedInsights />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
