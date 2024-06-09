@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import {headers} from 'next/headers'
+import { headers } from "next/headers";
 
-import iconsData from "./icons.json";
+import iconsData from "../../../../icons.json";
+
 // Function to map short names to full names
 const mapShortNames = (icons) => {
   const shortNames = {
@@ -51,7 +52,7 @@ const mapShortNames = (icons) => {
 };
 
 export async function GET(req) {
-  const headersList = headers()
+  const headersList = headers();
   const url = new URL(req.url);
   const searchParams = url.searchParams;
   const i = searchParams.get("i");
@@ -91,12 +92,12 @@ export async function GET(req) {
           //     // If the default variant also doesn't exist, try the icon without any theme suffix
           //     iconPath = `${iconBaseUrl}/${icon}.svg`;
           //     response = await fetch(iconPath);
-          //     if (!response.ok) {
-          //       // If the icon without any theme suffix also doesn't exist, return an empty string
-          //       return await fetch(`${baseUrl}/error.svg`).then((response) =>
-          //         response.text()
-          //       );
-          //     }
+          if (!response.ok) {
+            // If the icon without any theme suffix also doesn't exist, return an empty string
+            return await fetch(`${baseUrl}/error.svg`).then((response) =>
+              response.text(),
+            );
+          }
           //   }
           // }
           return await response.text();
@@ -104,10 +105,10 @@ export async function GET(req) {
           console.error(error);
           // Return a placeholder error icon here
           return await fetch(`${baseUrl}/error.svg`).then((response) =>
-            response.text()
+            response.text(),
           );
         }
-      })
+      }),
     );
   };
 
