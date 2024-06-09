@@ -27,64 +27,47 @@ const ThemeChanger = ({
   }
 
   return (
-    <div className="flex justify-start items-start gap-1 p-[3px] rounded-full border border-slate-100">
+    <div className="flex items-start justify-start gap-1 rounded-full border border-slate-100 p-[3px]">
       <div
-        className={`flex justify-start items-start relative gap-2.5 p-1.5 rounded-full ${
-          theme === "light"
-            ? `bg-[${lightSelectedBackgroundColor}]`
-            : `bg-[${darkUnselectedBackgroundColor}]`
-        }`}
+        className={`relative flex items-start justify-start gap-2.5 rounded-full p-1.5`}
+        style={{
+          backgroundColor: theme === "light" ? lightSelectedBackgroundColor : darkUnselectedBackgroundColor,
+        }}
         onClick={() => setTheme("light")}
       >
         <LuSunMedium
           size={size}
-          className={
-            theme === "light"
-              ? `text-[${lightSelectedColor}]`
-              : `text-[${darkUnselectedColor}]`
-          }
+          style={{
+            color: theme === "light" ? lightSelectedColor : darkUnselectedColor,
+          }}
         />
       </div>
       <div
-        className={`flex justify-start items-start relative gap-2.5 p-1.5 rounded-full ${
-          theme === "dark"
-            ? `bg-[${darkSelectedBackgroundColor}]`
-            : theme === "system"
-            ? `bg-[${darkUnselectedBackgroundColor}]`
-            : `bg-[${lightUnselectedBackgroundColor}]`
-        }`}
+        className={`relative flex items-start justify-start gap-2.5 rounded-full p-1.5`}
+        style={{
+          backgroundColor: theme === "dark" ? darkSelectedBackgroundColor : theme === "system" ? darkUnselectedBackgroundColor : lightUnselectedBackgroundColor,
+        }}
         onClick={() => setTheme("dark")}
       >
         <FiMoon
           size={size}
-          className={
-            theme === "dark"
-              ? `text-[${darkSelectedColor}]`
-              : theme === "system"
-              ? `text-[${darkUnselectedColor}]`
-              : `text-[${lightUnselectedColor}]`
-          }
+          style={{
+            color: theme === "dark" ? darkSelectedColor : theme === "system" ? darkUnselectedColor : lightUnselectedColor,
+          }}
         />
       </div>
       <div
-        className={`flex justify-start items-start relative gap-2.5 p-1.5 rounded-full ${
-          theme === "system"
-            ? `bg-[${darkSelectedBackgroundColor}]`
-            : theme === "dark"
-            ? `bg-[${darkUnselectedBackgroundColor}]`
-            : `bg-[${lightUnselectedBackgroundColor}]`
-        }`}
+        className={`relative flex items-start justify-start gap-2.5 rounded-full p-1.5`}
+        style={{
+          backgroundColor: theme === "system" ? darkSelectedBackgroundColor : theme === "dark" ? darkUnselectedBackgroundColor : lightUnselectedBackgroundColor,
+        }}
         onClick={() => setTheme("system")}
       >
         <LuLaptop
           size={size}
-          className={
-            theme === "system"
-              ? `text-[${darkSelectedColor}]`
-              : theme === "dark"
-              ? `text-[${darkUnselectedColor}]`
-              : `text-[${lightUnselectedColor}]`
-          }
+          style={{
+            color: theme === "system" ? darkSelectedColor : theme === "dark" ? darkUnselectedColor : lightUnselectedColor,
+          }}
         />
       </div>
     </div>

@@ -10,8 +10,8 @@ import {
   SelectTrigger,
   SelectContent,
   SelectItem,
-} from "@/components/ui/Select";
-
+} from "@/components/ui/select";
+import ThemeChanger from "@/components/ThemeChanger";
 const Home = () => {
   const [icons, setIcons] = useState("");
   const [theme, setTheme] = useState("dark");
@@ -77,8 +77,10 @@ const Home = () => {
             {filteredIcons.map((icon) => (
               <div
                 key={icon}
-                className={`ease flex min-w-24 max-w-24 cursor-pointer flex-col items-center justify-center rounded border px-1 py-3 transition duration-200 ${
-                  selectedIcons.includes(icon) ? "bg-slate-200" : "bg-white"
+                className={`ease border-px flex min-w-24 max-w-24 cursor-pointer flex-col items-center justify-center rounded border border-solid px-1 py-3 transition duration-200 ${
+                  selectedIcons.includes(icon)
+                    ? "bg-slate-200 dark:border-slate-500 dark:bg-slate-700"
+                    : "bg-white dark:border-slate-500 dark:bg-slate-800"
                 }`}
                 onClick={() => handleIconClick(icon)}
               >
@@ -87,17 +89,19 @@ const Home = () => {
                   alt={icon}
                   className="mb-2 h-8 w-8"
                 />
-                <span className="break-all text-xs">{icon}</span>
+                <span className="break-all text-xs dark:text-gray-300">
+                  {icon}
+                </span>
               </div>
             ))}
           </div>
         </CardContent>
         {generatedUrl && (
-          <CardContent className="mt-4 rounded-md border border-gray-300 bg-gray-100 p-4">
-            <p>Generated URL:</p>
+          <CardContent className="mt-4 rounded-md border border-gray-300 bg-gray-100 p-4 dark:border-gray-700 dark:bg-gray-800">
+            <p className="dark:text-white">Generated URL:</p>
             <a
               href={generatedUrl}
-              className="text-blue-500"
+              className="text-blue-500 dark:text-blue-400"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -107,21 +111,20 @@ const Home = () => {
         )}
       </Card>
       <div className="fixed bottom-3 flex w-full items-center justify-center px-24">
-        <div className="border-px container fixed bottom-[10px] z-10 flex h-min min-w-[calc(100vw-160px)] max-w-[calc(100vw-160px)] flex-wrap items-center justify-center gap-3 self-stretch rounded-lg border border-solid border-slate-700 bg-slate-400/50 bg-white p-6 backdrop-blur backdrop-filter">
-          <div className="">
-            <label className="block text-sm font-medium text-gray-900">
+        <div className="container fixed bottom-[10px] z-10 flex h-min min-w-[calc(100vw-160px)] max-w-[calc(100vw-160px)] flex-wrap items-center justify-center gap-3 self-stretch rounded-lg border border-solid border-slate-700 bg-slate-400/50 p-6 backdrop-blur backdrop-filter dark:bg-slate-900/50">
+          <div>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-300">
               Search Icons:
             </label>
             <Input
               placeholder="Search icons..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className=""
             />
           </div>
 
-          <div className="">
-            <label className="block text-sm font-medium text-gray-900">
+          <div>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-300">
               Icons per line:
             </label>
             <Input
@@ -130,8 +133,8 @@ const Home = () => {
               onChange={(e) => setPerLine(e.target.value)}
             />
           </div>
-          <div className="">
-            <label className="block text-sm font-medium text-gray-900">
+          <div>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-300">
               Space between icons:
             </label>
             <Input
@@ -140,8 +143,8 @@ const Home = () => {
               onChange={(e) => setSpace(e.target.value)}
             />
           </div>
-          <div className="">
-            <label className="block text-sm font-medium text-gray-900">
+          <div>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-300">
               Theme:
             </label>
             <Select
@@ -158,16 +161,32 @@ const Home = () => {
               </SelectContent>
             </Select>
           </div>
-          <div className="">
-            <label className="block text-sm font-medium text-gray-900">
+          <div>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-300">
               Click To Copy URL:
             </label>
             <Button
               onClick={() => navigator.clipboard.writeText(generateUrl())}
-              className="w-full max-w-60 bg-blue-500 text-white"
+              className="w-full max-w-60 bg-blue-500 text-white dark:bg-blue-600 dark:text-white"
             >
               Copy URL to Clipboard
             </Button>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-300">
+              Dark Mode:
+            </label>
+            <ThemeChanger
+              size={18}
+              lightSelectedColor="#3b82f6"
+              darkSelectedColor="#3b82f6"
+              lightSelectedBackgroundColor="#f1f5f9"
+              darkSelectedBackgroundColor="#f1f5f9"
+              lightUnselectedColor="#0f172a"
+              darkUnselectedColor="#ffffff"
+              lightUnselectedBackgroundColor="#ffffff00"
+              darkUnselectedBackgroundColor="#0f172a00"
+            />
           </div>
         </div>
       </div>
