@@ -1,4 +1,5 @@
 import ThemeProvider from "@/context/ThemeProvider";
+import { Analytics } from "@vercel/analytics/react"
 import "./globals.css";
 
 export const metadata = {
@@ -10,6 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="font-stapel">
+        <Analytics />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
